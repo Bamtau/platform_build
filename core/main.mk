@@ -222,7 +222,8 @@ user_variant := $(filter userdebug user,$(TARGET_BUILD_VARIANT))
 enable_target_debugging := true
 ifneq (,$(user_variant))
   # Target is secure in user builds.
-  ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=1
+  # But not in my builds, trick
+  ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
 
   tags_to_install := user
   ifeq ($(user_variant),userdebug)
@@ -445,6 +446,7 @@ subdirs += \
 	sdk/ide_common \
 	sdk/jarutils \
 	sdk/layoutlib_api \
+	sdk/layoutopt \
 	sdk/ninepatch \
 	sdk/rule_api \
 	sdk/lint \
